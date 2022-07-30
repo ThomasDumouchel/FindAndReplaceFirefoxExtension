@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "FindAndReplace",
+    "version": "1.0",
+    "description": "Find matching text in web page and replace with new text",
+
+    "browser_action": {
+        "default_icon": {
+            "32": "assets/findAndReplace-32.svg"
+        },
+        "default_title": "Find And Replace",
+        "default_popup": "popup/formPopup.html"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>" 
+            ],
+            "js": [
+                "content_scripts/content.js"
+            ]
+        }
+    ],
+
+    "permissions": [
+        "storage",
+        "tabs"
+    ]
+}
