@@ -12,18 +12,8 @@ replaceBtn.addEventListener('click', replaceClicked);
 findBtn.addEventListener('click', findClicked);
 
 function findClicked() {
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) { // This line get the tabs
-        browser.tabs.sendMessage(tabs[0].id, {type:"highlightText", textMatch: findInput.value}, function(response){ // This line sends a message from popup to current active tab
-            if (response){
-                console.log(response);
-            }
-        });
-    });
-}
-
-function findClicked() {
-    browser.tabs.query({active: true, currentWindow: true}, function(tabs) { // This line get the tabs
-        browser.tabs.sendMessage(tabs[0].id, {type:"replaceText", textMatch: findInput.value, textReplacement: replaceInput.value }, function(response){ // This line sends a message from popup to current active tab
+    browser.tabs.query({active: true, currentWindow: true}, function(tabs) { // This line gets the tabs
+        browser.tabs.sendMessage(tabs[0].id, { type: "highlightText", textMatch: findInput.value }, function(response){ // This line sends a message from popup to current active tab
             if (response){
                 console.log(response);
             }
@@ -32,5 +22,11 @@ function findClicked() {
 }
 
 function replaceClicked() {
-    console.log(document);
+    browser.tabs.query({active: true, currentWindow: true}, function(tabs) { // This line gets the tabs
+        browser.tabs.sendMessage(tabs[0].id, { type: "replaceText", textMatch: findInput.value, textReplacement: replaceInput.value }, function(response){ // This line sends a message from popup to current active tab
+            if (response){
+                console.log(response);
+            }
+        });
+    });
 }
